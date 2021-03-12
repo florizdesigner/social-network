@@ -1,15 +1,21 @@
 import React from 'react'
 import classes from './Profile.module.css'
-import MyPosts from "./MyPosts/MyPosts";
+import MyPosts from "./MyPosts/MyPosts"
+import ProfileInfo from "./ProfileInfo/ProfileInfo.jsx"
 
 const Profile = () => {
+
+    let posts = [
+        {id: 0, message: 'Hi, how are you?', likesCount: 12},
+        {id: 1, message: 'Hi, yo', likesCount: 1},
+        {id: 2, message: 'What do you think about this?', likesCount: 10},
+        {id: 3, message: 'What is this?', likesCount: 100}
+    ];
+
     return (
         <div>
-            <div><img
-                src="https://allsaintsepping.org/wp-content/blogs.dir/1/files/2017/02/Reconnect-Image-2017-1600x400-800x200.png"
-                alt="Picture"/></div>
-            <div>avatar + description</div>
-            <MyPosts/>
+            <ProfileInfo />
+            <MyPosts posts={posts} />
         </div>
     );
 }

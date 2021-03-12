@@ -1,9 +1,16 @@
 .nav {
     grid-area: n;
     background-color: #3F66C2;
+    padding: 15px;
 }
-.item {
-    color: #ffffff;
+.item a{
+    color: #fff;
     text-decoration: none;
-    padding-left: 15px;
+
+}
+.item a.activeClass {
+    color: #142e61;
+}
+.item a:hover {
+    color: #142e61;
 }

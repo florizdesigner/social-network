@@ -14,18 +14,20 @@ const App = () => {
     return (
         <BrowserRouter>
             <div className='app-wrapper'>
-            <Header/>
-            <Navbar/>
-            <div className='app-wrapper-content'>
-                <Route path='/dialogs' component={Dialogs}/>
-                <Route path='/profile' component={Profile}/>
-                <Route path='/news' component={News}/>
-                <Route path='/music' component={Music}/>
-                <Route path='/settings' component={Settings}/>
+                <Header/>
+                <Navbar/>
+                <div className='app-wrapper-content'>
+                    <Route path='/dialogs' component={Dialogs}/>
+                    {/*exact - точное выполнение path, если exact нет, то путь /dialogs/text/text/text/... будет тоже верным
+                    при exact - верный путь только /dialogs, в этом случае только отображатеся компонента Dialogs*/}
+                    <Route path='/profile' component={Profile}/>
+                    <Route path='/news' component={News}/>
+                    <Route path='/music' component={Music}/>
+                    <Route path='/settings' component={Settings}/>
+                </div>
             </div>
-        </div>
         </BrowserRouter>
-        );
+    );
 }
 
 export default App;

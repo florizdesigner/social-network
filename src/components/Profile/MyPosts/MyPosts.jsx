@@ -1,21 +1,28 @@
 import React from 'react'
 import classes from './MyPosts.module.css'
-import Post from "./Post/Post";
+import Post from "./Post/Post"
+import Profile from './../Profile'
 
-const MyPosts = () => {
+const MyPosts = ( {posts} ) => {
 
-return (<div>My posts
-        <div>
-            <textarea name="area" id="" cols="40" rows="4">text</textarea>
-            <button>Add post</button>
-            <button>Remove</button>
-        </div>
-        <Post message='Hi,how are you?' />
-        <Post message='It is react'/>
-        <Post message='Hello!'/>
-    </div>
-);
-}
+        let postsElements = posts.map(p => <Post message={p.message} likesCount={p.likesCount}/>)
+        return (<div className={classes.postsBlock}>
+                <h3>My posts</h3>
+                <div>
+                    <div>
+                        <textarea name="area" cols="40" rows="4">text</textarea>
+                    </div>
+
+                    <div>
+                        <button>Add post</button>
+                    </div>
+                </div>
+                <div className={classes.posts}>
+                    {postsElements}
+                </div>
+            </div>
+        );
+    }
 ;
 
 export default MyPosts;
