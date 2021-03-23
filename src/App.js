@@ -23,8 +23,7 @@ const App = (props) => {
                     {/*//при exact - верный путь только /dialogs, в этом случае только отображатеся компонента Dialogs*/}
                     <Route path='/profile' render={() => <Profile
                         profilePage={props.state.profilePage}
-                        addPost={props.addPost}
-                        updatePostText={props.updatePostText} /> } />
+                        dispatch={props.dispatch} /> } />
                     <Route path='/news' render={() => <News />}/>
                     <Route path='/music' render={() => <Music />}/>
                     <Route path='/settings' render={() => <Settings />}/>

@@ -1,3 +1,5 @@
+import {act} from "@testing-library/react";
+
 let store = {
     _state: {
             profilePage: {
@@ -27,27 +29,31 @@ let store = {
             { id: 7, name: 'Bob', avatar: 'https://yt3.ggpht.com/ytc/AAUvwnjHn9Kdpik0fnt95hRjzt5hwVOP_Q1qjpyWSSKF=s900-c-k-c0x00ffffff-no-rj' }
         ]}
             },
-    getState() {
-        return this._state
+    _callSubscriber() {
+        console.log('statechange')
     },
-    addPost() {
-        let newPost = {
-            id: 5,
-            message: this._state.profilePage.newPostText,
-            likesCount: 0
-        }
-        this._state.profilePage.posts.push(newPost)
-        this._callSubscriber(this._state)
-    },
-    updatePostText(newText) {
-        this._state.profilePage.newPostText = newText
-        this._callSubscriber(this._state)
-    },
+
     subscriber(observer) {
         this._callSubscriber = observer
     },
-    _callSubscriber() {
-        console.log('statechange')
+    getState() {
+        return this._state
+    },
+
+    dispatch(action) { // type: 'ADD-POST'
+        if (action.type === 'addPost') {
+            let newPost = {
+                id: 5,
+                message: this._state.profilePage.newPostText,
+                likesCount: 0
+            }
+            this._state.profilePage.posts.push(newPost)
+            this._callSubscriber(this._state)
+        }
+        else if (action.type === 'updatePostText') {
+            this._state.profilePage.newPostText = action.newText
+            this._callSubscriber(this._state)
+        }
     }
 }
 
