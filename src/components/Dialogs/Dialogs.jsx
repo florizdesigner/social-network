@@ -3,27 +3,19 @@ import classes from './Dialogs.module.css'
 import {NavLink} from 'react-router-dom'
 import DialogItem from './DialogItem/DialogItem'
 import Message from './Message/Message'
-
+/*import messages from './../../App'
+import dialogs from './../../App'*/
 
 const Dialogs = (props) => {
 
-    let dialogs= [
-        { id: 1, name: 'Dmitriy' },
-        { id: 2, name: 'Elena' },
-        { id: 3, name: 'Jacob' },
-        { id: 4, name: 'Alexa' },
-        { id: 5, name: 'Fedor' },
-        { id: 6, name: 'Albert' },
-    ];
+    let dialogsElements = props.state.dialogs.map (dialog => <DialogItem id={dialog.id} name={dialog.name} avatar={dialog.avatar} />);
+    let messageElements = props.state.messages.map (text => <Message message={text.message} />);
 
-    let messages = [
-        { message: 'Hello!' },
-        { message: 'Hello world!' },
-        { message: 'Hello! How are you?' }
-    ];
-
-    let dialogsElements = dialogs.map (dialog => <DialogItem id={dialog.id} name={dialog.name} />);
-    let messageElements = messages.map (text => <Message message={text.message} />);
+    let newMessage = React.createRef();
+    let sendMessage = () => {
+        let text = newMessage.current.value;
+        alert(text);
+    }
 
     return (
         <div className={classes.dialogs}>
@@ -31,6 +23,8 @@ const Dialogs = (props) => {
                 {dialogsElements}
             </div>
             <div className={classes.messages}>
+                <textarea ref={newMessage}></textarea>
+                <button onClick={sendMessage}>Send</button>
                 {messageElements}
             </div>
         </div>
