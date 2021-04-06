@@ -9,7 +9,7 @@ const Dialogs = (props) => {
 
     let dialogsElements = state.dialogs.map (dialog => <DialogItem id={dialog.id} name={dialog.name} avatar={dialog.avatar} />);
     let messageElements = state.messages.map (text => <Message message={text.message} />);
-    let newMessageBody = state.newMessageBody
+    let newMessageText = state.newMessageText
 
     let onSendMessageClick = () => {
         props.sendMessage()
@@ -29,7 +29,7 @@ const Dialogs = (props) => {
                 <div>
                     <textarea placeholder='Enter your message'
                               onChange={onNewMessageChange}
-                              value={newMessageBody}></textarea>
+                              value={newMessageText}></textarea>
                     <button onClick={onSendMessageClick}>Send</button>
                 </div>
             </div>

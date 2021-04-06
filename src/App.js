@@ -8,7 +8,7 @@ import News from "./components/News/News"
 import Music from "./components/Music/Music"
 import Settings from "./components/Settings/Settings"
 import {BrowserRouter, Route} from "react-router-dom"
-import DialogsComponent from "./components/Dialogs/DialogsComponent";
+import DialogsComponent from "./components/Dialogs/DialogsContainer";
 
 
 const App = (props) => {
@@ -18,12 +18,10 @@ const App = (props) => {
                 <Header/>
                 <Navbar/>
                 <div className='app-wrapper-content'>
-                    <Route path='/dialogs' render={() => <DialogsComponent
-                        store={props.store}/>} />
+                    <Route path='/dialogs' render={() => <DialogsComponent />} />
                     {/*    // exact - точное выполнение path, если exact нет, то путь /dialogs/text/text/text/... будет тоже верным*/}
                     {/*//при exact - верный путь только /dialogs, в этом случае только отображатеся компонента Dialogs*/}
-                    <Route path='/profile' render={() => <Profile
-                            store={props.store}/> } />
+                    <Route path='/profile' render={() => <Profile /> } />
                     <Route path='/news' render={() => <News />}/>
                     <Route path='/music' render={() => <Music />}/>
                     <Route path='/settings' render={() => <Settings />}/>

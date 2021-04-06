@@ -17,21 +17,32 @@ let initialState = {
         { id: 6, name: 'Albert', avatar: 'https://yt3.ggpht.com/ytc/AAUvwnjHn9Kdpik0fnt95hRjzt5hwVOP_Q1qjpyWSSKF=s900-c-k-c0x00ffffff-no-rj' },
         { id: 7, name: 'Bob', avatar: 'https://yt3.ggpht.com/ytc/AAUvwnjHn9Kdpik0fnt95hRjzt5hwVOP_Q1qjpyWSSKF=s900-c-k-c0x00ffffff-no-rj' }
     ],
-    newMessageText: ''
+    newMessageText: ""
 }
 
 const dialogsReducer = (state = initialState, action) => {
+
+    let stateCopy = {
+        ...state,
+        messages: [...state.messages]
+    }
+
     switch (action.type) {
         case UPDATE_MESSAGE_TEXT:
-            state.newMessageText = action.newMessageBody
-            return state
+            return {
+                ...state,
+                newMessageText: action.newMessageBody
+            }
         case SEND_MESSAGE:
-            let body = state.newMessageText
-            state.newMessageText = ''
-            state.messages.push({ id: 6, message: body })
+            let body = stateCopy.newMessageText
+            return {
+                ...state,
+                messages: [...state.messages, {id: 6, message: body}],
+                newMessageText: ''
+            }
+        default: {
             return state
-        default:
-            return state
+        }
     }
 }
 
